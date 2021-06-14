@@ -18,7 +18,7 @@ Resources:
           - !Ref AliasErrorMetricGreaterThanZeroAlarm
           - !Ref LastestVersionErrorMetricGreaterThanZeroAlarm
         Hooks:
-          Pretraffic: !Ref PreTrafficHook
+          PreTraffic: !Ref PreTrafficHook
           PostTraffic: !Ref PostTrafficHook 
       Events: 
         ChallengesAPI:
