@@ -58,7 +58,7 @@ Resources:
             - Name: FunctionName
               Value: !Ref HelloWord
             - Name: ExecutedVersion
-              Value: !!GetAtt HelloWorld.Version.Version
+              Value: !GetAtt HelloWorld.Version.Version
           EvaluationPeriods: 2
           MetricName: Errors
           NameSpace: AWS/Lambda
@@ -68,10 +68,10 @@ Resources:
       PreTrafficHook:
         Type: "AWS::Serverless::Function"
         Properties:
-          Handler: postTrafficHook.handler
+          Handler: preTrafficHook.handler
           Runtime: nodejs14.x
           CodeUri: "./Lambda"
-          FunctionName: 'CodeDeployHook_PostTrafficHook'
+          FunctionName: 'CodeDeployHook_PreTrafficHook'
           Policies:
           - Version: "2012-10-17"
             Statement:
@@ -80,6 +80,53 @@ Resources:
               - "codedeploy:PutLifecycleEventHookExecutionStatus"
               Resource:
                 !Sub: 'arn:aws:codedeploy:$(AWS:Region}:${AWS:AccountId}:deploymentgroup:"ServerlesssDeployment'
+          - Version: "2012-10-17"
+            Statement:
+            - Effect: "Allow"
+              Action:
+              - "lambda:InvokeFunction"
+              Resource: !Ref HelloWorld.Version
+          DeploymentPreference:
+            Enabled: false
+          Timeout: 5
+          Environment:
+          Variables:
+            NewVersion: !Ref HelloWorld.Version
+      
+      PostTrafficHook:
+        Type: "AWS::Serverless::Function"
+          Properties:
+            Handler: postTrafficHook.handler
+            Runtime: nodejs14.x
+            CodeUri: "./Lambda"
+            FunctionName: 'CodeDeployHook_PostTrafficHook'
+            Policies:
+            - Version: "2012-10-17"
+              Statement:
+              - Effect: "Allow"
+                Action:
+                - "codedeploy:PutLifecycleEventHookExecutionStatus"
+                Resource:
+                  !Sub: 'arn:aws:codedeploy:$(AWS:Region}:${AWS:AccountId}:deploymentgroup:"ServerlesssDeployment'
+            - Version: "2012-10-17"
+              Statement:
+              - Effect: "Allow"
+                Action:
+                - "lambda:InvokeFunction"
+                Resource: !Ref HelloWorld.Version
+            DeploymentPreference:
+              Enabled: false
+            Timeout: 5
+            Environment:
+            Variables:
+              NewVersion: !Ref HelloWorld.Version
+
+
+            
+
+        
+             
+
 
           
 
