@@ -1,0 +1,105 @@
+{
+    "Statement": [
+        {
+            "Action": [
+                "s3:GetObject",
+                "s3:GetObjectVersion",
+                "s3:GetBucketVersioning"
+            ],
+            "Resource":"*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::codepipeline*"
+            ],
+            "Effect": "Allow"
+        },
+        {   
+            "Action": [
+                "lambda:*"
+            ],
+            "Resource": [
+                "arn:aws:lambda:us-west-1:807230335956:*"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "apigateway:*"
+            ],
+            "Resource": [
+                "arn:aws:apigateway:us-west-1::*"
+            ],
+            "Effect":"Allow"
+        },
+        {
+            "Action":[
+                "iam:GetRole",
+                "iam:CreateRole",
+                "iam:DeleteRole",
+                "iam:PutRolePolicy",
+                "cloudwatch:*",
+                "logs:*"
+            ],
+            "Resource": [
+                "arn:aws:iam::807230335956:role/*"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "iam:AttachRolePolicy",
+                "iam:DeleteRolePolicy",
+                "iam:DetachRolePolicy"
+            ],
+            "Resource": [
+                "arn:aws:iam::807230335956:role/*"
+            ],
+            "Effect":"Allow"
+        },
+        {
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Effect":"Allow"
+        },
+        {
+            "Action":[
+                "cloudformation:CreateChangeSet"
+            ],
+            "Resource": [
+                "arn:aws:cloudformation:us-west-1:aws:transform/Serverless-2016-10-31"
+            ],
+            "Effect":"Allow"
+        },
+        {
+            "Action": [
+                "codedeploy:CreateApplication",
+                "codedeploy:DeleteApplication",
+                "codeDeploy:RegisterApplicationRevision"
+            ],
+            "Resource": [
+                "arn:aws:codedeploy:us-west-1:807230335956:application:*"
+            ],
+            "Effect":"Allow"
+
+        },
+        {
+            "Action": [
+                "codedeploy:GetDeploymentConfig"
+            ],
+            "Resource": [
+                "arn:aws:codedeploy:us-west-1:807230335956:deploymentconfig:*"
+            ],
+            "Effect":"Allow"
+        }
+
+    ]
+}
