@@ -3,7 +3,8 @@ phases:
   install:
     runtime-versions:
       python: 3.7
-      commands: aws cloudformation package --template-file template.yaml --s3-bucket lambda-ci-cd-demo-bucket --output-template-file outputTemplate.yaml
+    commands: 
+      - aws cloudformation package --template-file template.yaml --s3-bucket lambda-ci-cd-demo-bucket --output-template-file outputTemplate.yaml
 artifacts:
   type: zip
   files:
