@@ -56,7 +56,7 @@ Resources:
         - Name: Resource
           Value: !Sub "${HelloWorld}:live"
         - Name: FunctionName
-          Value: !Ref HelloWord
+          Value: !Ref HelloWorld
         - Name: ExecutedVersion
           Value: !GetAtt HelloWorld.Version.Version
       EvaluationPeriods: 2
