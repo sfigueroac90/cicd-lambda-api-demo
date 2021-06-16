@@ -8,7 +8,7 @@ Resources:
     Properties:
       Handler: info.handler
       CodeUri: ./Lambda
-      AutoublishAlias: live
+      AutoPublishAlias: live
       Runtime: nodejs14.x
       MemorySize: 128
       Timeout: 30
@@ -65,61 +65,61 @@ Resources:
         Statistics: Sum
         Threshold: 0
 
-    PreTrafficHook:
-      Type: AWS::Serverless::Function
-      Properties:
-        Handler: preTrafficHook.handler
-        Runtime: nodejs14.x
-        CodeUri: "./Lambda"
-        FunctionName: 'CodeDeployHook_PreTrafficHook'
-        Policies:
-          - Version: "2012-10-17"
-            Statement:
-            - Effect: "Allow"
-              Action:
-              - "codedeploy:PutLifecycleEventHookExecutionStatus"
-              Resource:
-                !Sub: 'arn:aws:codedeploy:$(AWS:Region}:${AWS:AccountId}:deploymentgroup:"ServerlesssDeployment'
-          - Version: "2012-10-17"
-            Statement:
-            - Effect: "Allow"
-              Action:
-              - "lambda:InvokeFunction"
-              Resource: !Ref HelloWorld.Version
-        DeploymentPreference:
-          Enabled: false
-        Timeout: 5
-        Environment:
-        Variables:
-          NewVersion: !Ref HelloWorld.Version
+  PreTrafficHook:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: preTrafficHook.handler
+      Runtime: nodejs14.x
+      CodeUri: "./Lambda"
+      FunctionName: 'CodeDeployHook_PreTrafficHook'
+      Policies:
+        - Version: "2012-10-17"
+          Statement:
+          - Effect: "Allow"
+            Action:
+            - "codedeploy:PutLifecycleEventHookExecutionStatus"
+            Resource:
+              !Sub: 'arn:aws:codedeploy:$(AWS:Region}:${AWS:AccountId}:deploymentgroup:"ServerlesssDeployment'
+        - Version: "2012-10-17"
+          Statement:
+          - Effect: "Allow"
+            Action:
+            - "lambda:InvokeFunction"
+            Resource: !Ref HelloWorld.Version
+      DeploymentPreference:
+        Enabled: false
+      Timeout: 5
+      Environment:
+      Variables:
+        NewVersion: !Ref HelloWorld.Version
       
-    PostTrafficHook:
-      Type: AWS::Serverless::Function
-      Properties:
-        Handler: postTrafficHook.handler
-        Runtime: nodejs14.x
-        CodeUri: "./Lambda"
-        FunctionName: 'CodeDeployHook_PostTrafficHook'
-        Policies:
-          - Version: "2012-10-17"
-            Statement:
-            - Effect: "Allow"
-              Action:
-              - "codedeploy:PutLifecycleEventHookExecutionStatus"
-              Resource:
-                !Sub: 'arn:aws:codedeploy:$(AWS:Region}:${AWS:AccountId}:deploymentgroup:"ServerlesssDeployment'
-          - Version: "2012-10-17"
-            Statement:
-            - Effect: "Allow"
-              Action:
-              - "lambda:InvokeFunction"
-              Resource: !Ref HelloWorld.Version
-        DeploymentPreference:
-          Enabled: false
-        Timeout: 5
-        Environment:
-        Variables:
-          NewVersion: !Ref HelloWorld.Version
+  PostTrafficHook:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: postTrafficHook.handler
+      Runtime: nodejs14.x
+      CodeUri: "./Lambda"
+      FunctionName: 'CodeDeployHook_PostTrafficHook'
+      Policies:
+        - Version: "2012-10-17"
+          Statement:
+          - Effect: "Allow"
+            Action:
+            - "codedeploy:PutLifecycleEventHookExecutionStatus"
+            Resource:
+              !Sub: 'arn:aws:codedeploy:$(AWS:Region}:${AWS:AccountId}:deploymentgroup:"ServerlesssDeployment'
+        - Version: "2012-10-17"
+          Statement:
+          - Effect: "Allow"
+            Action:
+            - "lambda:InvokeFunction"
+            Resource: !Ref HelloWorld.Version
+      DeploymentPreference:
+        Enabled: false
+      Timeout: 5
+      Environment:
+      Variables:
+        NewVersion: !Ref HelloWorld.Version
 
 
             
