@@ -3,7 +3,7 @@ Transform: AWS::Serverless-2016-10-31
 Description: CI/CD Lambda Test
 Resources:
 
-  Helloworld:
+  HelloWorld:
     Type: 'AWS::Serverless::Function'
     Properties:
       Handler: info.handler
