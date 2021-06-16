@@ -48,7 +48,7 @@ Resources:
     Type: "AWS::CloudWatch::Alarm"
     Properties:
       AlarmDescription: "Lambda Function Error > 0"
-      ComparisonOperator: GreaterThenThreshold
+      ComparisonOperator: GreaterThanThreshold
       Dimensions:
         - Name: Resource
           Value: !Sub "${HelloWorld}:live"
