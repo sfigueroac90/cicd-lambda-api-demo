@@ -39,7 +39,7 @@ Resources:
         - Name: Resource
           Value: !Sub "${HelloWorld}:live"
         - Name: FunctionName
-          Value: !Ref Helloworld
+          Value: !Ref HelloWorld
       EvaluationPeriods: 2
       MetricName: Errors
       Namespace: AWS/Lambda
