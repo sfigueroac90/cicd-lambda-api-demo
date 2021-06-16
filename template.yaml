@@ -58,7 +58,7 @@ Resources:
         - Name: FunctionName
           Value: !Ref HelloWord
         - Name: ExecutedVersion
-          Value: !GetAtt HelloWorld.Version.Version
+          Value: !GetAtt HelloWorld.Version
       EvaluationPeriods: 2
       MetricName: Errors
       NameSpace: AWS/Lambda
