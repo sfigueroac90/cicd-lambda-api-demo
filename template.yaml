@@ -59,7 +59,7 @@ Resources:
       EvaluationPeriods: 2
       MetricName: Errors
       Namespace: AWS/Lambda
-      Statistics: Sum
+      Statistic: Sum
       Threshold: 0
 
 
