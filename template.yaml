@@ -13,7 +13,7 @@ Resources:
       MemorySize: 128
       Timeout: 30
       DeploymentPreference: 
-        Type: All-at-once #Canary10Percent5Minutes
+        Type: AllAtOnce #Canary10Percent5Minutes
         Alarms:
           - !Ref AliasErrorMetricGreaterThanZeroAlarm
           - !Ref LatestVersionErrorMetricGreaterThanZeroAlarm
