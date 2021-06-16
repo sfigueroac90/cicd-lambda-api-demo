@@ -30,40 +30,40 @@ Resources:
         Variables:
           REGION: us-east-1
 
-      AliasErrorMetricGreaterThanZeroAlarm:
-        Type: "AWS::CloudWatch::Alarm"
-        Properties:
-          AlarmDescription: Lambda Function Error > 0
-          ComparisonOperator: GreatherThanThreshold
-          Dimension:
-            - Name: Resource
-              Value: !Sub "${HelloWorld}:live"
-            - Name: FunctionName
-              Value: !Ref Helloworld
-          EvaluationPeriods: 2
-          MetricName: Errors
-          Namespace: AWS/Lambda
-          Period: 60
-          Statistic: Sum
-          Threshold: 0
+    AliasErrorMetricGreaterThanZeroAlarm:
+      Type: "AWS::CloudWatch::Alarm"
+      Properties:
+        AlarmDescription: Lambda Function Error > 0
+        ComparisonOperator: GreatherThanThreshold
+        Dimension:
+          - Name: Resource
+            Value: !Sub "${HelloWorld}:live"
+          - Name: FunctionName
+            Value: !Ref Helloworld
+        EvaluationPeriods: 2
+        MetricName: Errors
+        Namespace: AWS/Lambda
+        Period: 60
+        Statistic: Sum
+        Threshold: 0
       
-      LastestVersionErrorMetricGreaterThanZeroAlarm:
-        Type: "AWS::CloudWatch::Alarm"
-        Properties:
-          AlarmDescription: "Lambda Function Error > 0"
-          ComparisonOperator: GreatherThenThreshold
-          Dimensions:
-            - Name: Resource
-              Value: !Sub "${HelloWorld}:live"
-            - Name: FunctionName
-              Value: !Ref HelloWord
-            - Name: ExecutedVersion
-              Value: !GetAtt HelloWorld.Version.Version
-          EvaluationPeriods: 2
-          MetricName: Errors
-          NameSpace: AWS/Lambda
-          Statistics: Sum
-          Threshold: 0
+    LatestVersionErrorMetricGreaterThanZeroAlarm:
+      Type: "AWS::CloudWatch::Alarm"
+      Properties:
+        AlarmDescription: "Lambda Function Error > 0"
+        ComparisonOperator: GreatherThenThreshold
+        Dimensions:
+          - Name: Resource
+            Value: !Sub "${HelloWorld}:live"
+          - Name: FunctionName
+            Value: !Ref HelloWord
+          - Name: ExecutedVersion
+            Value: !GetAtt HelloWorld.Version.Version
+        EvaluationPeriods: 2
+        MetricName: Errors
+        NameSpace: AWS/Lambda
+        Statistics: Sum
+        Threshold: 0
 
       PreTrafficHook:
         Type: AWS::Serverless::Function
