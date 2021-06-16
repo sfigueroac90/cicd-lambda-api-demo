@@ -58,7 +58,7 @@ Resources:
           Value: !GetAtt HelloWorld.Version.Version
       EvaluationPeriods: 2
       MetricName: Errors
-      NameSpace: AWS/Lambda
+      Namespace: AWS/Lambda
       Statistics: Sum
       Threshold: 0
 
