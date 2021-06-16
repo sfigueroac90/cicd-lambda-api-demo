@@ -16,7 +16,7 @@ Resources:
         Type: All-at-once #Canary10Percent5Minutes
         Alarms:
           - !Ref AliasErrorMetricGreaterThanZeroAlarm
-          - !Ref LastestVersionErrorMetricGreaterThanZeroAlarm
+          - !Ref LatestVersionErrorMetricGreaterThanZeroAlarm
         Hooks:
           PreTraffic: !Ref PreTrafficHook
           PostTraffic: !Ref PostTrafficHook 
