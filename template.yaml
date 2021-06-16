@@ -32,7 +32,7 @@ Resources:
     Properties:
       AlarmDescription: Lambda Function Error > 0
       ComparisonOperator: GreatherThanThreshold
-      Dimension:
+      Dimensions:
         - Name: Resource
           Value: !Sub "${HelloWorld}:live"
         - Name: FunctionName
